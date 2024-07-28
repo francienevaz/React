@@ -1,10 +1,8 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import FirstComponent from './FirstComponent'
 import TemplateExpression from './TempleExpression'
-import MyComponents from './MyComponents'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -18,8 +16,6 @@ function App() {
       </div>
       <TemplateExpression />
       <FirstComponent />
-      <MyComponents/>
-
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
