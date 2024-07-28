@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import FirstComponent from './FirstComponent'
 import TemplateExpression from './TempleExpression'
+import MyComponents from './MyComponents'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -17,6 +18,7 @@ function App() {
       </div>
       <TemplateExpression />
       <FirstComponent />
+      <MyComponents/>
 
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
