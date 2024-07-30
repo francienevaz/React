@@ -1,11 +1,15 @@
 import { useState } from 'react'
 import './App.css'
+import OverTheGardenWall from './assets/oSegredoAlemDoJardim.jpg'
+import ListRender from './components/ListRender'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
+      <img src={OverTheGardenWall} alt="Desenho" />
+      <ListRender/>
       <h1>Count: {count}</h1>
       <button onClick={() => setCount(count + 1)}>Increment</button>
       <button onClick={() => setCount(count - 1)}>Decrement</button>
