@@ -12,6 +12,9 @@ import ShowUserName from './components/ShowUserName'
 import CardDetails from './components/CardDetails'
 import Container from './components/Container'
 import ExecuteFunction from './components/ExecuteFunction'
+import Message from './components/Message'
+import ChangeMessageState from './components/ChangeMessageState'
+import UserDetails from './components/UserDetails'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -69,6 +72,33 @@ function App() {
     console.log('Clicou')
   }
 
+  const [message, setMessage] = useState("")
+
+  const handleMessage = (msg) => {
+    setMessage(msg)
+  }
+
+  const dataUsers = [
+    {
+      id: 1,
+      name: 'João',
+      age: 32,
+      profession: 'desenvolvedor backend'
+    }, 
+    {
+      id: 2,
+      name: 'Maria',
+      age: 16,
+      profession: 'desenvolvedor frontend'
+    },
+    {
+      id: 3,
+      name: 'Pedro',
+      age: 40,
+      profession: 'desenvolvedor fullstack'
+    }
+  ]
+
   return (
     <>
       <ListRender/>
@@ -87,6 +117,11 @@ function App() {
          <p>Essa é a children</p>
       </Container>
       <ExecuteFunction executeThisFunction={executeThisFunction}/>
+      {/* State lift */}
+      <Message msg={message}/>
+      <ChangeMessageState handleMessage={handleMessage}/>
+      <UserDetails data={dataUsers}/>
+
       <h1>Count: {count}</h1>
       <button onClick={() => setCount(count + 1)}>Increment</button>
       <button onClick={() => setCount(count - 1)}>Decrement</button>
