@@ -1,0 +1,11 @@
+.navbar {
+    height: 10rem;
+    width: 100%;
+    background-color: #29355c;
+}
+
+.logo {
+    color: #fff;
+    padding-top: 50px;
+    font-size: 2em;
+  }
