@@ -29,6 +29,21 @@
       "id": "ad25",
       "name": "Teclado",
       "price": "400"
+    },
+    {
+      "id": "9a86",
+      "name": "Mamao",
+      "price": "13"
+    },
+    {
+      "id": "cd84",
+      "name": "Banana",
+      "price": "7"
+    },
+    {
+      "id": "cf3b",
+      "name": "Laranja",
+      "price": "6"
     }
   ]
 }

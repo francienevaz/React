@@ -1,6 +1,8 @@
 import './App.css'
 import { useState, useEffect } from "react";
 
+import { useFetch } from './hooks/useFetch';
+
 function App() {
   const url = "http://localhost:3000/products"
 
@@ -11,22 +13,28 @@ function App() {
   
   // resgatando dados
 
-  useEffect(()=>{
-    const fetchData = async () => {
-      try {
-        const res = await fetch(url);
+  // 4 - custom hook
+  // importando o data do useFetch que retornamos na funcao useFetch
+  // e renomeamos para items
+  const { data: items } = useFetch(url);
 
-        const data = await res.json()
 
-        setProducts(data)
+  // useEffect(()=>{
+  //   const fetchData = async () => {
+  //     try {
+  //       const res = await fetch(url);
 
-      } catch (err) {
-        console.error("Erro ao buscar produtos", err);
-      }
-    };
+  //       const data = await res.json()
+
+  //       setProducts(data)
+
+  //     } catch (err) {
+  //       console.error("Erro ao buscar produtos", err);
+  //     }
+  //   };
     
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   // adicionando produtos - POST
 
@@ -68,7 +76,7 @@ function App() {
         <h1>Lista de Produtos</h1>
         <ul>
           {/* usamos o () ao inves do {} na função para retorna o objeto */}
-          {products.map((item) => (
+          {items && items.map((item) => (
             <li key={item.id}>
               Produto: {item.name} - R${item.price} </li>
           ))}
