@@ -1,49 +1,19 @@
 {
   "products": [
     {
-      "id": "1",
-      "name": "Camisa",
-      "price": 59.9
+      "id": "efd7",
+      "name": "Macbook",
+      "price": "14000"
     },
     {
-      "id": "2",
-      "name": "Calça Jeans",
-      "price": 110
+      "id": "2012",
+      "name": "Mesa digitalizadora",
+      "price": "500"
     },
     {
-      "id": "3",
-      "name": "Boné aba reta",
-      "price": 75
-    },
-    {
-      "id": "20de",
-      "name": "Bermuda",
-      "price": "120"
-    },
-    {
-      "id": "da19",
-      "name": "teste",
-      "price": "50"
-    },
-    {
-      "id": "ad25",
-      "name": "Teclado",
-      "price": "400"
-    },
-    {
-      "id": "9a86",
-      "name": "Mamao",
-      "price": "13"
-    },
-    {
-      "id": "cd84",
-      "name": "Banana",
-      "price": "7"
-    },
-    {
-      "id": "cf3b",
-      "name": "Laranja",
-      "price": "6"
+      "id": "85c9",
+      "name": "Teclado Logitech",
+      "price": "800"
     }
   ]
 }

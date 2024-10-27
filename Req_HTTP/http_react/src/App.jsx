@@ -2,6 +2,8 @@ import './App.css'
 import { useState, useEffect } from "react";
 
 import { useFetch } from './hooks/useFetch';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRectangleXmark } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
   const url = "http://localhost:3000/products"
@@ -16,7 +18,13 @@ function App() {
   // 4 - custom hook
   // importando o data do useFetch que retornamos na funcao useFetch
   // e renomeamos para items
-  const { data: items } = useFetch(url);
+  const { data: items, httpConfig, loading, error} = useFetch(url);
+
+  useEffect(() => {
+    if(items) {
+      setProducts(items)
+    }
+  }, [items])
 
 
   // useEffect(()=>{
@@ -52,36 +60,49 @@ function App() {
       price
     }
 
-    const res = await fetch(url, {
-      method: "POST", 
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(product),
-    });
+    // const res = await fetch(url, {
+    //   method: "POST", 
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(product),
+    // });
 
-    // Carregamento dinamico
-    const addedProduct = await res.json();
+    // // Carregamento dinamico
+    // const addedProduct = await res.json();
 
-    setProducts((prevProducts) => [...prevProducts, addedProduct]);
+    // setProducts((prevProducts) => [...prevProducts, addedProduct]);
+
+    // Refatorando o POST
+    httpConfig(product, "POST");
 
     setName("");
     setPrice("");
   };
 
+  // deletando produtos
+  const handleDelete = (id) => {
+    httpConfig(id, "DELETE");
+
+    setProducts((prevProducts) => prevProducts.filter((product) => product.id !== id));
+  }
 
   return (
     <>
       <div className='App'>
         <h1>Lista de Produtos</h1>
-        <ul>
+        {/* {Loading} */}
+        {loading && <p>Carregando...</p>}
+        {!error && (
+          <ul>          
           {/* usamos o () ao inves do {} na função para retorna o objeto */}
-          {items && items.map((item) => (
+          {products && products.map((item) => (
             <li key={item.id}>
-              Produto: {item.name} - R${item.price} </li>
+              Produto: {item.name} - R${item.price} <button type='button' name='close' className='close' onClick={() => handleDelete(item.id)}><FontAwesomeIcon icon={faRectangleXmark} /></button></li>
           ))}
-        </ul>
-
+          </ul>
+        )}
+        {error && <p>{error}</p>}
         <div className="add-product">
           <form onSubmit={handleSubmit}>
             <label>
@@ -92,7 +113,8 @@ function App() {
               <span>Preço:</span>
               <input type="number" name="price" value={price} onChange={(e) => setPrice(e.target.value)} />
             </label>
-            <input type="submit" value="Criar" />
+            {loading && <input type="submit" disabled value="Aguarde..." />}
+            {!loading && <input type="submit" value="Criar" />}            
           </form>
         </div>
       </div>
